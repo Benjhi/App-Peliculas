@@ -56,7 +56,7 @@ class List extends React.Component {
                     <input 
                     type="text" 
                     className="form-control" 
-                    placeholder="Search"
+                    placeholder="Buscar"
                     onChange={e => this.setState({searchTerm: e.target.value})}
                     value={this.state.searchTerm}
                     autoFocus

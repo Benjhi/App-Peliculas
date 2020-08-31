@@ -10,7 +10,7 @@ const App = () => {
      <Fragment>
       <nav className="navbar navbar-white bg-dark border-bottom border-white">
         <a href="/" className="navbar-brand text-white">
-          MovieApp
+          Buscador de peliculas, series y juegos!
         </a>
       </nav>
       <main className="bg-dark">
