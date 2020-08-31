@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const DotEnv = require('dotenv-webpack');
 
 const htmlPlugin = new HtmlWebpackPlugin({
   template: "./src/index.html",
@@ -11,7 +12,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
+        use: ['babel-loader', 'eslint-loader'],
       },
         {
           test: /\.css$/,
@@ -19,5 +20,5 @@ module.exports = {
         },
     ],
   },
-  plugins: [htmlPlugin],
+  plugins: [htmlPlugin, new DotEnv()],
 };

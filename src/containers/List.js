@@ -2,7 +2,8 @@ import React, { Fragment } from 'react'
 
 import Card from '../components/Card/Card'
 
-const API = 'http://www.omdbapi.com/?i=tt3896198&apikey=ac98354'
+console.log(process.env.API);
+const API = process.env.API;
 
 class List extends React.Component {
 
@@ -11,7 +12,8 @@ class List extends React.Component {
         this.state = {
             data: [],
             searchTerm: '',
-            error: ''
+            error: '',
+            loading: true
         }
     }
 
@@ -19,7 +21,8 @@ class List extends React.Component {
         //const res = await fetch('../../assets/data.json')
         const res = await fetch(`${API}&s=batman`)
         const resJSON = await res.json()
-        this.setState({ data: resJSON.Search })
+        console.log(resJSON)
+        this.setState({ data: resJSON.Search, loading: false})
     }
 
     async handleSubmit(e) {
@@ -39,6 +42,12 @@ class List extends React.Component {
     }
 
     render() {
+
+        const { data, loading} = this.state;
+        if (loading) {
+            return <h3 className="text-light">Cargando...</h3>
+        }
+
         return (
             <Fragment>
                 <div className="row">
@@ -60,7 +69,7 @@ class List extends React.Component {
                 </div>
                 <div className="row">
                     {
-                        this.state.data.map((movie, i) => {
+                        data.map((movie, i) => {
                             return <Card movie={movie} key={i}/>;
                         })}
                 </div>
